@@ -1,4 +1,4 @@
-require "google_spreadsheet"
+require "google_drive"
 
 class GoogleHTTPError < RuntimeError; end
 class GoogleReadError < RuntimeError; end
@@ -37,7 +37,7 @@ class Roo::Google < Roo::GenericSpreadsheet
     @date_format = '%d/%m/%Y'
     @datetime_format = '%d/%m/%Y %H:%M:%S'
     @time_format = '%H:%M:%S'
-    session = GoogleSpreadsheet.login(user, password)
+    session = GoogleDrive.login(user, password)
     @sheetlist = []
     session.spreadsheet_by_key(@spreadsheetkey).worksheets.each { |sheet|
       @sheetlist << sheet.title
